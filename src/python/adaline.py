@@ -115,5 +115,22 @@ def main(argv):
     ax[1].set_title('Adaline - Learning rate 0.0001')
     plt.show()
 
+    x_std = np.copy(x)
+    x_std[:,0] = (x[:,0] - x[:,0].mean()) / x[:,0].std()
+    x_std[:,1] = (x[:,1] - x[:,1].mean()) / x[:,1].std()
+
+    ada = AdalineGD(eta=0.01, n_iter=15)
+    ada.fit(x_std, y)
+    plot_decision_regions(x_std, y, classifier=ada)
+    plt.title('Adaline - Gradient Descent')
+    plt.xlabel('sepal length [standardized]')
+    plt.ylabel('petal length [standardized]')
+    plt.legend(loc='upper left')
+    plt.show()
+    plt.plot(range(1, len(ada.cost_) + 1), ada.cost_, marker='o')
+    plt.xlabel('Epochs')
+    plt.ylabel('Sum-squared-error')
+    plt.show()
+
 if __name__ == "__main__":
     main(sys.argv)
