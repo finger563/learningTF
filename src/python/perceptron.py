@@ -55,7 +55,7 @@ class Perceptron(object):
             self.errors_.append(errors)
         return self
 
-    def net_intput(self, X):
+    def net_input(self, X):
         """Calculate net input."""
         return np.dot(X, self.w_[1:]) + self.w_[0]
 
@@ -72,8 +72,7 @@ def main(argv):
     y = df.iloc[0:100, 4].values
     y = np.where(y == 'Iris-setosa', -1, 1)
     x = df.iloc[0:100, [0, 2]].values
-    print(x)
-    print(y)
+
     plt.scatter(x[:50, 0], x[:50, 1],
                 color = 'red', marker='o', label='setosa')
     plt.scatter(x[50:100, 0], x[50:100, 1],
@@ -81,6 +80,13 @@ def main(argv):
     plt.xlabel('petal length')
     plt.ylabel('sepal length')
     plt.legend(loc='upper left')
+    plt.show()
+
+    ppn = Perceptron(eta=0.1, n_iter=10)
+    ppn.fit(x, y)
+    plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
+    plt.xlabel('Epochs')
+    plt.ylabel('Number of misclassifications')
     plt.show()
 
 if __name__ == "__main__":
