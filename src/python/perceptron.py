@@ -1,11 +1,12 @@
 #!/usr/bin/python
 
+import matplotlib
+matplotlib.use('agg')
+print matplotlib.get_backend()
+
 import sys
 import numpy as np
 import pandas as pd
-import matplotlib
-#matplotlib.use('agg')
-#print matplotlib.get_backend()
 import matplotlib.pyplot as plt
 
 class Perceptron(object):
