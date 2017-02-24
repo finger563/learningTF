@@ -1,9 +1,5 @@
 #!/usr/bin/python
 
-import matplotlib
-matplotlib.use('agg')
-print matplotlib.get_backend()
-
 import sys
 import numpy as np
 import pandas as pd
@@ -76,8 +72,8 @@ def main(argv):
     y = df.iloc[0:100, 4].values
     y = np.where(y == 'Iris-setosa', -1, 1)
     x = df.iloc[0:100, [0, 2]].values
-    print x
-    print y
+    print(x)
+    print(y)
     plt.scatter(x[:50, 0], x[:50, 1],
                 color = 'red', marker='o', label='setosa')
     plt.scatter(x[50:100, 0], x[50:100, 1],
@@ -85,7 +81,6 @@ def main(argv):
     plt.xlabel('petal length')
     plt.ylabel('sepal length')
     plt.legend(loc='upper left')
-    print "HELLO"
     plt.show()
 
 if __name__ == "__main__":
